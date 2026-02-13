@@ -17,17 +17,18 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  transition: 1s ease;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(16px);
-  padding: 38px;
-  border-radius: 32px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(18px);
+  padding: 40px;
+  border-radius: 35px;
   text-align: center;
   color: #5a3e85;
   box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-  max-width: 420px;
+  max-width: 430px;
   animation: fadeIn 0.8s ease;
 }
 
@@ -36,53 +37,46 @@ body {
 h1 {
   font-family: 'Playfair Display', serif;
   color: #6a4c93;
-  margin-bottom: 12px;
 }
 
 p {
   font-size: 16px;
   line-height: 1.7;
-  margin: 10px 0;
-  color: #5f4b8b;
+  margin: 12px 0;
+}
+
+input {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  text-align: center;
+  margin-top: 10px;
 }
 
 button {
-  margin-top: 22px;
-  padding: 12px 30px;
+  margin-top: 20px;
+  padding: 12px 28px;
   border-radius: 30px;
   border: none;
   font-size: 15px;
   cursor: pointer;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  color: #4a2c6f;
-  transition: 0.3s ease;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  transition: 0.3s;
 }
 
-button:hover {
-  transform: scale(1.06);
-}
+button:hover { transform: scale(1.05); }
 
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 18px;
-  margin-top: 25px;
-}
-
-.yes {
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  color: white;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .no {
-  background: #ffffff;
+  background: white;
   color: #ff758c;
-}
-
-.from {
-  margin-top: 18px;
-  font-weight: 600;
-  color: #6a4c93;
 }
 
 .heart {
@@ -90,7 +84,6 @@ button:hover {
   bottom: -10px;
   font-size: 18px;
   animation: float 7s linear infinite;
-  opacity: 0.8;
 }
 
 @keyframes float {
@@ -99,74 +92,91 @@ button:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="screen1">
+<!-- PASSWORD SCREEN -->
+<div class="card" id="passwordScreen">
+  <h1>Enter the secret word 💖</h1>
+  <p>(Hint: where it all started)</p>
+  <input type="password" id="passwordInput" placeholder="Type here...">
+  <br>
+  <button onclick="checkPassword()">Unlock</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<!-- STORY SCREEN -->
+<div class="card hidden" id="screen1">
   <h1>Hi Aabha 🌷</h1>
-
-  <p>
-    It’s crazy to think how far we’ve come 💖  
-    From school days to growing up together,
-    every year with you has been beautiful.
-  </p>
-
-  <p>
-    You’ve been my constant through everything —  
-    my laughs, my calm, my safe place 🤍
-  </p>
-
+  <p id="typeText"></p>
   <button onclick="nextScreen()">Next ➜</button>
 </div>
 
+<!-- QUESTION SCREEN -->
 <div class="card hidden" id="screen2">
   <h1>Will you be my Valentine? 💌</h1>
-
   <div class="buttons">
-    <button class="yes" onclick="yes()">YES 💕</button>
+    <button onclick="yes()">YES 💕</button>
     <button class="no" onclick="no()">NO 🙈</button>
   </div>
 </div>
 
+<!-- YES SCREEN -->
 <div class="card hidden" id="yesScreen">
   <h1>YESSSS!!! 😭💖</h1>
-
   <p>
-    Seven years ago, we were just kids in school,  
-    and somehow, we grew up side by side.
+    Seven years ago, we were just kids in school...
+    and somehow we grew up together.
   </p>
-
   <p>
-    Through every phase, every version of us,  
-    choosing you has always felt right.
+    Through every version of us,
+    every phase,
+    every dream —
+    I would still choose you.
   </p>
-
   <p>
-    Thank you for growing with me,  
-    loving me,  
-    and being my home 🤍
+    Thank you for loving me,
+    for staying,
+    and for being my home 🤍
   </p>
-
-  <p class="from">— Always yours, Manomay</p>
+  <p><b>Forever yours, Manomay</b></p>
 </div>
 
+<!-- NO SCREEN -->
 <div class="card hidden" id="noScreen">
   <h1>YOU HAVE NO OPTION 😭💘</h1>
-
-  <p>
-    I’m sorry but this was never a real choice 😌  
-    You’re stuck with me for life 💕
-  </p>
-
-  <p class="from">— Manomay</p>
+  <p>This was never a real choice 😌</p>
+  <p>You’re stuck with me forever 💕</p>
 </div>
 
 <script>
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  if(input.toLowerCase() === "school") {
+    passwordScreen.style.display = "none";
+    screen1.style.display = "block";
+    typeWriter();
+  } else {
+    document.getElementById("error").innerText = "Wrong password 🙈";
+  }
+}
+
+const message = "It’s crazy to think how far we’ve come 💖 From school days to growing up together... Every year with you has been beautiful. You’ve been my calm, my happiness, and my favourite person 🤍";
+let i = 0;
+
+function typeWriter() {
+  if (i < message.length) {
+    document.getElementById("typeText").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeWriter, 40);
+  }
+}
+
 function nextScreen() {
   screen1.style.display = "none";
   screen2.style.display = "block";
@@ -176,6 +186,8 @@ function nextScreen() {
 function yes() {
   screen2.style.display = "none";
   yesScreen.style.display = "block";
+  document.body.style.background = "linear-gradient(135deg, #ff9a9e, #fecfef)";
+  burstHearts();
 }
 
 function no() {
@@ -184,15 +196,23 @@ function no() {
 }
 
 function startHearts() {
-  setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "🤍";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.animationDuration = Math.random() * 3 + 4 + "s";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 8000);
-  }, 600);
+  setInterval(createHeart, 600);
+}
+
+function createHeart() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "🤍";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = Math.random() * 3 + 4 + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}
+
+function burstHearts() {
+  for(let j=0; j<25; j++) {
+    createHeart();
+  }
 }
 </script>
 
