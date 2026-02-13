@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Aabha 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+  background: linear-gradient(135deg, #fde2e4, #e0c3fc);
   font-family: 'Quicksand', sans-serif;
   display: flex;
   justify-content: center;
@@ -19,45 +20,77 @@ body {
 }
 
 .card {
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(14px);
-  padding: 35px;
-  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px);
+  padding: 38px;
+  border-radius: 32px;
   text-align: center;
-  color: white;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-  max-width: 380px;
-  animation: fade 0.6s ease;
+  color: #5a3e85;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  max-width: 420px;
+  animation: fadeIn 0.8s ease;
 }
 
 .hidden { display: none; }
 
+h1 {
+  font-family: 'Playfair Display', serif;
+  color: #6a4c93;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 10px 0;
+  color: #5f4b8b;
+}
+
 button {
-  margin-top: 20px;
-  padding: 12px 28px;
+  margin-top: 22px;
+  padding: 12px 30px;
   border-radius: 30px;
   border: none;
   font-size: 15px;
   cursor: pointer;
-  transition: 0.3s;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #4a2c6f;
+  transition: 0.3s ease;
 }
 
-button:hover { transform: scale(1.05); }
+button:hover {
+  transform: scale(1.06);
+}
 
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 18px;
+  margin-top: 25px;
 }
 
-.yes { background: #ff5fa2; color: white; }
-.no { background: white; color: #ff5fa2; }
+.yes {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+}
+
+.no {
+  background: #ffffff;
+  color: #ff758c;
+}
+
+.from {
+  margin-top: 18px;
+  font-weight: 600;
+  color: #6a4c93;
+}
 
 .heart {
   position: absolute;
   bottom: -10px;
   font-size: 18px;
-  animation: float 6s linear infinite;
+  animation: float 7s linear infinite;
+  opacity: 0.8;
 }
 
 @keyframes float {
@@ -65,9 +98,9 @@ button:hover { transform: scale(1.05); }
   to { transform: translateY(-100vh); opacity: 0; }
 }
 
-@keyframes fade {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 </style>
 </head>
@@ -76,17 +109,24 @@ button:hover { transform: scale(1.05); }
 
 <div class="card" id="screen1">
   <h1>Hi Aabha 🌷</h1>
+
   <p>
-    These years with you have been the most beautiful part of my life 💖✨
+    It’s crazy to think how far we’ve come 💖  
+    From school days to growing up together,
+    every year with you has been beautiful.
   </p>
+
   <p>
-    You are my peace, my happiness, and my favourite person 🧸
+    You’ve been my constant through everything —  
+    my laughs, my calm, my safe place 🤍
   </p>
+
   <button onclick="nextScreen()">Next ➜</button>
 </div>
 
 <div class="card hidden" id="screen2">
   <h1>Will you be my Valentine? 💌</h1>
+
   <div class="buttons">
     <button class="yes" onclick="yes()">YES 💕</button>
     <button class="no" onclick="no()">NO 🙈</button>
@@ -95,47 +135,66 @@ button:hover { transform: scale(1.05); }
 
 <div class="card hidden" id="yesScreen">
   <h1>YESSSS!!! 😭💖</h1>
-  <p>You just made my heart the happiest 💘</p>
-  <p>I promise forever love and unlimited hugs 🤍</p>
+
+  <p>
+    Seven years ago, we were just kids in school,  
+    and somehow, we grew up side by side.
+  </p>
+
+  <p>
+    Through every phase, every version of us,  
+    choosing you has always felt right.
+  </p>
+
+  <p>
+    Thank you for growing with me,  
+    loving me,  
+    and being my home 🤍
+  </p>
+
+  <p class="from">— Always yours, Manomay</p>
 </div>
 
 <div class="card hidden" id="noScreen">
   <h1>YOU HAVE NO OPTION 😭💘</h1>
-  <p>This game was rigged from the start 😌</p>
-  <p>You’re stuck with me forever 💕</p>
+
+  <p>
+    I’m sorry but this was never a real choice 😌  
+    You’re stuck with me for life 💕
+  </p>
+
+  <p class="from">— Manomay</p>
 </div>
 
 <script>
 function nextScreen() {
-  document.getElementById("screen1").style.display = "none";
-  document.getElementById("screen2").style.display = "block";
+  screen1.style.display = "none";
+  screen2.style.display = "block";
   startHearts();
 }
 
 function yes() {
-  document.getElementById("screen2").style.display = "none";
-  document.getElementById("yesScreen").style.display = "block";
+  screen2.style.display = "none";
+  yesScreen.style.display = "block";
 }
 
 function no() {
-  document.getElementById("screen2").style.display = "none";
-  document.getElementById("noScreen").style.display = "block";
+  screen2.style.display = "none";
+  noScreen.style.display = "block";
 }
 
 function startHearts() {
   setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "🤍";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-  }, 500);
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "🤍";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 8000);
+  }, 600);
 }
 </script>
 
 </body>
 </html>
-
-
